@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Feed</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <script>
+    const username = localStorage.getItem("username");
+    if (!username) {
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <!-- Header -->
+  <header class="main-header">
+    <h1>Media Feed</h1>
+    <button id="logoutBtn">Logout</button>
+  </header>
+
+  <!-- Container -->
+  <div class="container">
+    <p id="welcome" class="welcome-text">Welcome, </p>
+
+    <!-- Upload Form -->
+    <form id="uploadForm">
+      <input type="file" id="mediaInput" multiple accept="image/jpeg,image/png,video/mp4,video/webm" />
+      <button type="submit">Upload</button>
+      <p class="error" id="errorMsg"></p>
+    </form>
+
+    <!-- Media Display Area -->
+    <div id="mediaFeed"></div>
+  </div>
+
+  <!-- Modal Viewer -->
+  <div id="modal" class="modal hidden">
+    <span id="closeModal">&times;</span>
+    <div id="modalContent"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    document.getElementById("welcome").textContent = `Welcome, ${username}!`;
+    document.getElementById("logoutBtn").onclick = () => {
+      localStorage.removeItem("username");
+      window.location.href = "login.html";
+    };
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
